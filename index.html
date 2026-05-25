@@ -409,6 +409,74 @@ nav.topnav {
   letter-spacing: 0.04em;
 }
 
+/* ── Hero Portrait column ── */
+.hero-portrait-col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  opacity: 0;
+  animation: fadeUp 1s 0.7s var(--ease) forwards;
+}
+
+.hero-portrait-wrap {
+  position: relative;
+  overflow: hidden;
+  line-height: 0;
+}
+/* gold corner marks */
+.hero-portrait-wrap::before {
+  content: "";
+  position: absolute;
+  top: -1px; inset-inline-end: -1px;
+  width: 56px; height: 56px;
+  border-top: 2px solid var(--gold);
+  border-inline-end: 2px solid var(--gold);
+  z-index: 3;
+}
+.hero-portrait-wrap::after {
+  content: "";
+  position: absolute;
+  bottom: -1px; inset-inline-start: -1px;
+  width: 56px; height: 56px;
+  border-bottom: 2px solid var(--gold);
+  border-inline-start: 2px solid var(--gold);
+  z-index: 3;
+}
+
+.hero-portrait-img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+  filter: brightness(0.88) contrast(1.08);
+  transition: filter 0.7s var(--ease), transform 0.9s var(--ease);
+}
+.hero-portrait-col:hover .hero-portrait-img {
+  filter: brightness(0.96) contrast(1.04);
+  transform: scale(1.03);
+}
+
+/* gradient fade at bottom of photo so card blends in */
+.hero-portrait-fade {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 90px;
+  background: linear-gradient(to top, rgba(10,22,40,0.95), transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* quote card attached below portrait */
+.hero-portrait-col .hero-card {
+  animation: none;
+  opacity: 1;
+  border-top: none;
+  margin-top: 0;
+  background: rgba(245,240,230,0.05);
+}
+
 .hero-scroll {
   position: absolute;
   bottom: 30px;
@@ -1652,10 +1720,25 @@ footer {
       </div>
     </div>
 
-    <aside class="hero-card">
-      <div class="hero-quote-mark en-display">"</div>
-      <p class="hero-quote">لسنا هنا لنكون نسخة من أحد… نحن هنا لنصنع فرقًا.</p>
-      <div class="hero-author">— حسن شلبي</div>
+    <aside class="hero-portrait-col">
+      <!-- Portrait photo — place hassan-portrait.jpg in same folder -->
+      <div class="hero-portrait-wrap">
+        <img
+          src="hassan-portrait.jpg.jpeg"
+          alt="حسن شلبي — قائد تنفيذي"
+          class="hero-portrait-img"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="hero-portrait-fade"></div>
+      </div>
+
+      <!-- Quote card directly below the portrait -->
+      <div class="hero-card">
+        <div class="hero-quote-mark en-display">"</div>
+        <p class="hero-quote">لسنا هنا لنكون نسخة من أحد… نحن هنا لنصنع فرقًا.</p>
+        <div class="hero-author">— حسن شلبي</div>
+      </div>
     </aside>
   </div>
 
